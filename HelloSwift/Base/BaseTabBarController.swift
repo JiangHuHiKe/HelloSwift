@@ -18,13 +18,13 @@ final class BaseTabBarController: UITabBarController {
 
     // MARK: - Setup
     private func setupViewControllers() {
-        let nativeVC = NativeViewController()
+        let nativeVC = HomeViewController()
         let flutterVC = FlutterViewController()
         let webVC = WebViewController()
         let otherVC = OtherViewController()
 
         let nativeNav = wrapInNavigation(vc: nativeVC,
-                                          title: "Native",
+                                          title: "Home",
                                           image: "house",
                                           selectedImage: "house.fill")
 
@@ -51,7 +51,7 @@ final class BaseTabBarController: UITabBarController {
                                   image: String,
                                   selectedImage: String) -> UINavigationController {
         vc.title = title
-        let nav = UINavigationController(rootViewController: vc)
+        let nav = BaseNavigationController(rootViewController: vc)
         nav.tabBarItem = UITabBarItem(
             title: title,
             image: UIImage(systemName: image),
