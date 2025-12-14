@@ -12,7 +12,7 @@ class AlgorithmViewController: BaseViewController {
     
     // MARK: - Lazy TableView
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
@@ -21,11 +21,17 @@ class AlgorithmViewController: BaseViewController {
         return tableView
     }()
     
-    private let sectionNames = ["链表", "栈与队列"]
+    private let sectionNames = ["排序", "链表", "栈与队列"]
     
     private let datas = [
+        ["冒泡排序","冒泡排序(优化)"],
         ["循环链表","翻转链表"],
         ["使用栈","使用队列"],
+    ]
+    
+    
+    private let funsList : [[() -> Void]] = [
+        [SortCase.bubbleSort, SortCase.bubbleSort2]
     ]
 
 
@@ -75,7 +81,9 @@ extension AlgorithmViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        let funs = funsList[indexPath.section]
+        let fun = funs[indexPath.row]
+        fun()
     }
     
     
@@ -88,5 +96,13 @@ extension AlgorithmViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
     }
 }

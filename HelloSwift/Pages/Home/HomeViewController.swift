@@ -12,7 +12,7 @@ class HomeViewController: BaseViewController {
 
     // MARK: - Lazy TableView
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
@@ -67,5 +67,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = vcs[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
+
 }
 
